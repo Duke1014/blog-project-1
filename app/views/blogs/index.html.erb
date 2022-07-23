@@ -1,2 +1,10 @@
 <h1>Hello, World!</h1>
-<p>Find me in app/views/blogs/index.html.erb</p>
+<ul>
+  <% @blogs.each do |blog| %>
+    <li>
+      <%= blog.title %>
+      <br/>
+      <%= blog.content %>
+    </li>
+  <% end %>
+</ul>
