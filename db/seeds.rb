@@ -17,5 +17,12 @@ require "faker"
         password: password,
         email: email,
     )
-    
+    40.times do
+        content = Faker::Lorem.paragraph
+        user.blogs.new(
+            content: content,
+            user_id: user.id
+        )
+    end
+
 end

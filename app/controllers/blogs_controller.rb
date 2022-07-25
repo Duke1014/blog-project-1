@@ -5,9 +5,9 @@ class BlogsController < ApplicationController
     @blogs = Blog.all
   end
 
-  # def show
-
-  # end
+  def show
+    @blog = Blog.find(params[:id])
+  end
 
   def create
     user = User.find_by(id: session[:user_id])
