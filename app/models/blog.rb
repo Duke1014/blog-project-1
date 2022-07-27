@@ -1,6 +1,6 @@
 class Blog < ApplicationRecord
-    validates :content, presence: true
+    # validates :content, presence: true
 
-    belongs_to :user
-    belongs_to :comment
+    has_many :comments
+    has_many :users, through: :comments
 end
