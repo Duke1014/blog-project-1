@@ -15,9 +15,15 @@ class BlogsController < ApplicationController
     render json: blog, status: :created
   end
 
-  # def update
-    
-  # end
+  def update
+    blog = Blog.find_by(id: params[:id])
+    if blog
+      blog.update(blog_params)
+      render json: blog
+    else
+      render json: { error: "Blog Not Found" } status: :not_found
+    end
+  end
 
   def destroy
     blog = Blog.find_by(id: params[:id])
