@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
+  before_action :authorize 
 
   def index
     @blogs = Blog.all
@@ -34,11 +35,15 @@ class BlogsController < ApplicationController
   private
 
   def render_unprocessable_entity(invalid)
-      render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
+    render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
+  end
+
+  def authorize
+    return render json: { errors: ["Not Authorized"] }, status: :unauthorized unless session.include? :user_id
   end
 
   def blog_params
-      params.permit(:content)
+    params.permit(:title, :content, :published_on)
   end
 
 end

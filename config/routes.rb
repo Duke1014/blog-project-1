@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   get '/blogs', to: 'blogs#index'
   get '/blogs/:id', to: 'blogs#show'
+
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
   
   resources :comments
   resources :blogs

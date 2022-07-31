@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-        params.permit(:content)
+        params.permit(:content, :published_on)
     end
 
 end
